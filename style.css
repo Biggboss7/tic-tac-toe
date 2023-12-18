@@ -1,0 +1,179 @@
+/* Universal Styling */
+:root {
+  --blue-1000: hsl(178, 60%, 48%);
+  --blue-500: hsl(178, 75%, 65%);
+  --yellow-1000: hsl(39, 87%, 54%);
+  --yellow-500: hsl(39, 100%, 69%);
+  --black-1000: hsl(202, 32%, 15%);
+  --black-500: hsl(199, 35%, 19%);
+  --grey-1000: hsl(198, 23%, 72%);
+  --grey-500: hsl(197, 33%, 89%);
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Outfit", sans-serif;
+  font-size: 16px;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--grey-1000);
+  background-color: var(--black-1000);
+}
+
+header,
+main {
+  width: 460px;
+}
+
+header {
+  display: inherit;
+  justify-content: inherit;
+  align-items: inherit;
+  margin-bottom: 2.5rem;
+}
+
+/* Font Style */
+.heading--L {
+  font-size: 2.5rem;
+  letter-spacing: 2.5px;
+}
+
+.heading--M {
+  font-size: 1.5rem;
+  letter-spacing: 1.5px;
+}
+
+.heading--S {
+  font-size: 1.25rem;
+  letter-spacing: 1.25px;
+}
+
+.heading--XS {
+  font-size: 1rem;
+  letter-spacing: 1px;
+}
+
+.font--body {
+  font-size: 0.875rem;
+  letter-spacing: 0.8px;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+/* Button */
+.btn {
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  border-radius: 1rem;
+  transition: background 0.2s ease-in;
+}
+
+.btn--yellow {
+  background-color: var(--yellow-1000);
+  box-shadow: 0 5px 0 0 hsl(39, 82%, 43%);
+}
+
+.btn--yellow:hover {
+  background-color: var(--yellow-500);
+}
+
+.btn--green {
+  background-color: var(--blue-1000);
+  box-shadow: 0 5px 0 0 hsl(178, 69%, 33%);
+}
+
+.btn--green:hover {
+  background-color: var(--blue-500);
+}
+
+.form--btn__wrapper .btn {
+  width: 100%;
+  height: 50px;
+  margin: 0.5rem 0;
+}
+
+/* Game Initialization Section */
+.player1--choice__container {
+  margin-bottom: 2.5rem;
+  padding: 1.5rem;
+  background-color: var(--black-500);
+  text-align: center;
+  border-radius: 0.9375rem;
+  box-shadow: 0 5px 0 0 #10212a;
+}
+
+.choice__wrapper {
+  margin: 1rem 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: #10212a;
+  border-radius: 10px;
+}
+
+label {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+label > svg {
+  transform: scale(0.5);
+  fill: var(--grey-1000);
+}
+
+/* Input Radio Customization */
+input[type="radio"] {
+  appearance: none;
+  width: 190px;
+  height: 50px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+input[type="radio"]:hover {
+  background-color: var(--black-1000);
+}
+
+input[type="radio"]::after {
+  content: "";
+  display: block;
+  width: inherit;
+  height: inherit;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--grey-1000);
+  border-radius: inherit;
+  transform: scale(0);
+}
+
+input[type="radio"]:checked::after {
+  transform: scale(1);
+}
+
+input[type="radio"]:checked + svg {
+  fill: var(--black-1000);
+}
