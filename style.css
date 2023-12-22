@@ -45,6 +45,7 @@ header {
   margin-bottom: 2.5rem;
 }
 
+/* Active State */
 header.active {
   justify-content: space-between;
 }
