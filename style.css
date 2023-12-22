@@ -96,7 +96,6 @@ header.active .player__turn--bar {
   text-transform: uppercase;
   cursor: pointer;
   border: none;
-  transition: background 0.2s ease-in;
 }
 
 .btn--yellow {
@@ -250,6 +249,20 @@ input[type="radio"]:checked + svg {
   background-color: var(--black-500);
   border-radius: 15px;
   box-shadow: 0 7px 0 0 #10212a;
+}
+
+.game__arena .game--block:hover {
+  background-repeat: no-repeat;
+  background-size: 50% 50%;
+  background-position: center;
+}
+
+.game__arena.x .game--block:hover {
+  background-image: url("./assets/icon-x-outline.svg");
+}
+
+.game__arena.o .game--block:hover {
+  background-image: url("./assets/icon-o-outline.svg");
 }
 
 .score--block {
