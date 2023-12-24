@@ -265,6 +265,11 @@ input[type="radio"]:checked + svg {
   background-image: url("./assets/icon-o-outline.svg");
 }
 
+.game__arena.x .game--block:disabled:hover,
+.game__arena.o .game--block:disabled {
+  background-image: none;
+}
+
 .score--block {
   display: flex;
   flex-direction: column;
