@@ -8,11 +8,18 @@ const gameContainerEl = document.querySelector(".game__container");
 const gameArenaEl = document.querySelector(".game__arena");
 const playerTurnEl = document.querySelector(".player__turn");
 let currentPlayer = "x";
+const winnerMessageEl = document.querySelector("#winner--message");
+const winningMarkWrapperEl = document.querySelector(".winning--mark__wrapper");
+const roundTakerContentEl = document.querySelector("#round--taker__content");
 const playerOptions = [...document.querySelectorAll("input[type='radio']")];
 const gameBlocksEl = document.querySelectorAll(".game--block");
 let winner;
 const scoreBoardEl = document.querySelectorAll(".score--block > strong");
 const btnReplayEl = document.querySelector("#btn--replay");
+let clickedButtonCounter = 0;
+let winningMark = "";
+let tieScore = 0;
+const boardTieEl = document.querySelector("#board-tie");
 
 const player1 = {
   name: "",
@@ -65,25 +72,37 @@ const playerSelection = function (player) {
 };
 
 const winningDisplay = function () {
-  const winningMark = document.querySelector("img[alt='winning mark']");
-  const winnerMessageEl = document.querySelector("#winner--message");
+  winningMark = document.createElement("img");
+  winningMark.setAttribute("src", `./assets/icon-${winner.mark}.svg`);
+  winningMark.setAttribute("alt", "winning mark");
+
+  winningMarkWrapperEl.prepend(winningMark);
   winner.score += 1;
   document.querySelector(
     `#board-${winner.mark} + strong`
   ).textContent = `${winner.score}`;
   overlayEl.classList.add("active");
-  winningMark.src = `./assets/icon-${winner.mark}.svg`;
   winnerMessageEl.textContent = `player ${winner.number} wins!`;
 };
 
+const tieDisplay = function () {
+  overlayEl.classList.add("active");
+  roundTakerContentEl.textContent = "";
+  winnerMessageEl.textContent = "round tied!";
+  tieScore++;
+  boardTieEl.textContent = tieScore;
+};
+
 const gameCheck = function () {
-  Object.entries(gameMaps).forEach(entry => {
-    const [_, value] = entry;
-    if (value.length === 3 && new Set(value).size === 1) {
-      winner = players.find(player => player.mark === [...new Set(value)][0]);
+  for (const key in gameMaps) {
+    if (gameMaps[key].length === 3 && new Set(gameMaps[key]).size === 1) {
+      winner = players.find(
+        player => player.mark === [...new Set(gameMaps[key])][0]
+      );
       winningDisplay();
     }
-  });
+  }
+  if (clickedButtonCounter === 9 && !winner) tieDisplay();
 };
 
 const inputOrganize = function (element) {
@@ -108,6 +127,8 @@ const placeMark = function (element) {
 
   element.disabled = true;
 
+  clickedButtonCounter++;
+
   inputOrganize(element);
   gameCheck();
 };
@@ -128,6 +149,13 @@ const resetGame = function () {
   currentPlayer = "x";
   playerTurnEl.style.backgroundImage = `url("./assets/icon-${currentPlayer}.svg")`;
   gameArenaEl.classList.contains("o") && gameArenaEl.classList.remove("o");
+
+  clickedButtonCounter = 0;
+
+  winningMark && winningMarkWrapperEl.removeChild(winningMark);
+  winningMark = "";
+
+  roundTakerContentEl.textContent = "takes the round!";
 };
 
 const quitGame = function () {
@@ -145,6 +173,10 @@ const quitGame = function () {
     player.score = 0;
     player.mark = "";
   });
+
+  tieScore = 0;
+  boardTieEl.textContent = 0;
+
   resetGame();
 };
 
