@@ -2,12 +2,17 @@ const header = document.querySelector("header");
 const overlayEl = document.querySelector(".overlay");
 const playerForm = document.querySelector(".player__form");
 const playButtonsEl = document.querySelector("#btn--play__wrapper");
+const btnQuitEl = document.querySelector("#btn--quit");
+const btnNextRoundEl = document.querySelector("#btn--nextRound");
 const gameContainerEl = document.querySelector(".game__container");
 const gameArenaEl = document.querySelector(".game__arena");
 const playerTurnEl = document.querySelector(".player__turn");
 let currentPlayer = "x";
 const playerOptions = [...document.querySelectorAll("input[type='radio']")];
+const gameBlocksEl = document.querySelectorAll(".game--block");
 let winner;
+const scoreBoardEl = document.querySelectorAll(".score--block > strong");
+const btnReplayEl = document.querySelector("#btn--replay");
 
 const player1 = {
   name: "",
@@ -36,6 +41,7 @@ const gameMaps = {
   backslash: [],
 };
 
+// Functions
 const displayGame = function () {
   header.classList.add("active");
   playerForm.classList.remove("active");
@@ -106,6 +112,49 @@ const placeMark = function (element) {
   gameCheck();
 };
 
+const resetGame = function () {
+  winner = "";
+
+  for (const el in gameMaps) {
+    gameMaps[el] = [];
+  }
+
+  for (const block of gameBlocksEl) {
+    const mark = block.children[0];
+    mark && block.removeChild(mark);
+    block.disabled = false;
+  }
+
+  currentPlayer = "x";
+  playerTurnEl.style.backgroundImage = `url("./assets/icon-${currentPlayer}.svg")`;
+  gameArenaEl.classList.contains("o") && gameArenaEl.classList.remove("o");
+};
+
+const quitGame = function () {
+  header.classList.remove("active");
+  playerForm.classList.add("active");
+  gameContainerEl.classList.remove("active");
+  overlayEl.classList.remove("active");
+
+  for (const board of scoreBoardEl) {
+    board.textContent = "0";
+  }
+
+  players.forEach(player => {
+    player.name = "";
+    player.score = 0;
+    player.mark = "";
+  });
+  resetGame();
+};
+
+const nextRound = function () {
+  overlayEl.classList.remove("active");
+  resetGame();
+};
+
+// Button Event Listener
+
 playButtonsEl.addEventListener("click", function (e) {
   const element = e.target;
 
@@ -126,3 +175,9 @@ gameArenaEl.addEventListener("click", function (e) {
     changeTurn();
   }
 });
+
+btnQuitEl.addEventListener("click", quitGame);
+
+btnReplayEl.addEventListener("click", resetGame);
+
+btnNextRoundEl.addEventListener("click", nextRound);
