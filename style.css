@@ -45,6 +45,60 @@ header {
   margin-bottom: 2.5rem;
 }
 
+/* Overlay */
+.overlay {
+  width: 100%;
+  min-height: 100vh;
+  display: none;
+  align-items: center;
+  background-color: hsla(0, 0%, 0%, 0.6);
+  position: absolute;
+  z-index: 10;
+}
+
+/* Status Bar */
+.status__bar {
+  width: inherit;
+  padding: 3rem 6rem;
+  text-align: center;
+  background-color: var(--black-500);
+}
+
+.overlay.active {
+  display: flex;
+}
+
+.status__bar--content {
+  height: 8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.status__bar strong {
+  display: block;
+}
+
+.status__bar .btn__wrapper {
+  text-align: center;
+}
+
+.status__bar .btn__wrapper .btn {
+  padding: 1rem;
+  border-radius: 10px;
+  margin: 0 0.5rem;
+}
+
+.winning--mark__wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+img[alt="winning mark"] {
+  margin-right: 1rem;
+}
+
 /* Active State */
 header.active {
   justify-content: space-between;

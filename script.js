@@ -1,4 +1,5 @@
 const header = document.querySelector("header");
+const overlayEl = document.querySelector(".overlay");
 const playerForm = document.querySelector(".player__form");
 const playButtonsEl = document.querySelector("#btn--play__wrapper");
 const gameContainerEl = document.querySelector(".game__container");
@@ -6,20 +7,23 @@ const gameArenaEl = document.querySelector(".game__arena");
 const playerTurnEl = document.querySelector(".player__turn");
 let currentPlayer = "x";
 const playerOptions = [...document.querySelectorAll("input[type='radio']")];
+let winner;
 
 const player1 = {
   name: "",
   number: "1",
   mark: "",
-  score: "",
+  score: 0,
 };
 
 const player2 = {
   name: "",
   number: "2",
   mark: "",
-  score: "",
+  score: 0,
 };
+
+const players = [player1, player2];
 
 const gameMaps = {
   row0: [],
@@ -54,11 +58,24 @@ const playerSelection = function (player) {
   challengerBoard.textContent = `${player2.mark} (${player2.name})`;
 };
 
+const winningDisplay = function () {
+  const winningMark = document.querySelector("img[alt='winning mark']");
+  const winnerMessageEl = document.querySelector("#winner--message");
+  winner.score += 1;
+  document.querySelector(
+    `#board-${winner.mark} + strong`
+  ).textContent = `${winner.score}`;
+  overlayEl.classList.add("active");
+  winningMark.src = `./assets/icon-${winner.mark}.svg`;
+  winnerMessageEl.textContent = `player ${winner.number} wins!`;
+};
+
 const gameCheck = function () {
   Object.entries(gameMaps).forEach(entry => {
     const [_, value] = entry;
     if (value.length === 3 && new Set(value).size === 1) {
-      console.log("GAME END!!");
+      winner = players.find(player => player.mark === [...new Set(value)][0]);
+      winningDisplay();
     }
   });
 };
