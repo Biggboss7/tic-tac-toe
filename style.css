@@ -59,7 +59,7 @@ header {
 /* Status Bar */
 .status__bar {
   width: inherit;
-  padding: 3rem 6rem;
+  padding: 3rem 0.5rem;
   text-align: center;
   background-color: var(--black-500);
 }
@@ -345,4 +345,37 @@ input[type="radio"]:checked + svg {
 
 .block--yellow {
   background-color: var(--yellow-1000);
+}
+
+/* Media Query */
+@media only screen and (max-width: 690px) {
+  .status__bar {
+    padding: 2rem 0;
+  }
+  .status__bar--content > strong {
+    font-size: 0.875rem;
+  }
+
+  .winning--mark__wrapper strong {
+    font-size: 1.5rem;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  header,
+  main {
+    width: 90%;
+  }
+
+  .choice__wrapper {
+    padding: 0 0.5rem;
+  }
+
+  input[type="radio"] {
+    width: 100%;
+  }
+
+  .game--block {
+    height: clamp(6.75rem, -0.3929rem + 30.4762vw, 8.75rem);
+  }
 }
