@@ -25,7 +25,7 @@ Welcome to the Tic-Tac-Toe application! This simple yet classic game is designed
 - Game Start State \
 ![game-start-state](./screenshots/game-start.png)
 - During Game State\
-![during-game-state](./screenshots/during-start.png)
+![during-game-state](./screenshots/during-game.png)
 - Game Finish State \
 ![game-finish-state](./screenshots/game-finish.png)
 
