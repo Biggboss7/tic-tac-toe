@@ -7,7 +7,7 @@
     <!-- CSS Link -->
     <link rel="stylesheet" href="style.css" />
     <!-- JS Link -->
-    <script src="script.js" defer></script>
+    <script src="newScript.js" defer></script>
     <!-- Font Style -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -117,7 +117,7 @@
         </div>
       </div>
       <div class="game__container">
-        <div class="game__arena x">
+        <div class="game__arena">
           <button
             data-row="row0"
             data-col="col0"
@@ -174,15 +174,15 @@
         <div class="score--board">
           <div class="score--block block--green font--body">
             <span id="board-x" class="uppercase">x</span>
-            <strong class="heading--M">0</strong>
+            <strong id="score-x" class="heading--M">0</strong>
           </div>
           <div class="score--block block--white font--body">
-            <span class="uppercase">ties</span>
-            <strong id="board-tie" class="heading--M">0</strong>
+            <span id="board-tie" class="uppercase">ties</span>
+            <strong id="score-tie" class="heading--M">0</strong>
           </div>
           <div class="score--block block--yellow font--body">
-            <span id="board-o" class="uppercase">cpu</span>
-            <strong class="heading--M">0</strong>
+            <span id="board-o" class="uppercase">o</span>
+            <strong id="score-o" class="heading--M">0</strong>
           </div>
         </div>
       </div>
